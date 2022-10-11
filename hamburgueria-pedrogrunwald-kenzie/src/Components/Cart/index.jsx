@@ -12,8 +12,8 @@ const totalSum = cartItems.reduce((prev, current) => prev+current.price,0)
       </ContainerTitle>
       <ContainerCart>
         <ContainerList>
-      
-          {cartItems.map((cartItem) => (
+        {cartItems.length > 0 ? 
+          cartItems.map((cartItem) => (
             <ContainerProduct key={cartItem.id}>
               <ImageProduct src={cartItem.img} alt={cartItem.name} />
               <div>
@@ -22,7 +22,14 @@ const totalSum = cartItems.reduce((prev, current) => prev+current.price,0)
               </div>
               <Button>Remover</Button>
             </ContainerProduct>
-          ))}
+          ))
+         : (
+          <>
+          <p>Sua sacola está vazia</p>
+          </>
+        )}
+
+
         </ContainerList>
       </ContainerCart>
       <ContainerTotalSale>

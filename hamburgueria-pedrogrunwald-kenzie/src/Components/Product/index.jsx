@@ -9,8 +9,8 @@ import {
   Button,
   ContainerInformation
 } from "./style";
-import { toast } from "react-toastify";
-const Product = ({ product, cartIdd }) => {
+const Product = ({ product, cartId }) => {
+
   return (
     <ContainerProduct>
       {/* <p>{product.id}</p> */}
@@ -23,8 +23,8 @@ const Product = ({ product, cartIdd }) => {
         <Price> R${product.price}</Price>
         <Button
           onClick={() => {
-            cartIdd(product.id);
-            toast("item adicionado com sucesso");
+            cartId(product.id);
+           
           }}
         >
           Adicionar

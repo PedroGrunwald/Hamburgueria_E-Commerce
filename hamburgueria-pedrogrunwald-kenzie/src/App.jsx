@@ -6,7 +6,7 @@ import api from "./services/api";
 import Cart from "./Components/Cart";
 import { ContainerList } from "./Components/Product/style";
 import {ContainerContent} from "./style"
-
+import { toast } from "react-toastify";
 
 
 function App() {
@@ -24,10 +24,15 @@ function App() {
 
   function cartId(itemId) {
     const filteredItems = products.filter((item) => item.id === itemId);
-    cartItems.every((item) => item.id !== itemId);
-    setCartItems((oldItems) => [...oldItems.concat(filteredItems)]);
+   
+    if((cartItems.every((item) => item.id !== itemId))){
+      setCartItems((oldItems) => [...oldItems.concat(filteredItems)]);
+      toast("item adicionado com sucesso");
+    } else{
+      toast("Item ja foi adicionado ao carrinho")
+    }
   }
-
+  
   return (
     <>
       <Header
@@ -37,7 +42,7 @@ function App() {
       />
       <ContainerContent>
       <ContainerList setSearch={setSearch} search={search} products={products}>
-        <ProductsList products={searchProduct} cartIdd={cartId} />
+        <ProductsList products={searchProduct} cartId={cartId} />
       </ContainerList>
       <Cart cartItems={cartItems} />
       </ContainerContent>
@@ -45,5 +50,4 @@ function App() {
       </>
   );
 }
-
 export default App;
